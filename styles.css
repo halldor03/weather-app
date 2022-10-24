@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+/* to show boxes */
+/* * {
+  border: 1px black solid;
+} */
+
+/* simple reset */
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.3);
+  background-image: url(././img/background.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+}
+
+#content {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  padding: 5rem;
+}
+
+.inputContainer {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: flex-end;
+  align-self: flex-start;
+}
+
+input {
+  text-align: right;
+  appearance: none;
+  background: none;
+  border: 0;
+  outline: 0;
+  color: white;
+}
+
+.noCityFound {
+  height: 50px;
+  background-color: red;
+}
+
+.weatherContainer {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 2rem);
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "weatherDesc weatherDesc weatherDesc"
+    "cityCountry cityCountry cityCountry"
+    "temperatureCurrent temperatureCurrent temperatureFeeling"
+    "temperatureCurrent temperatureCurrent wind"
+    "temperatureCurrent temperatureCurrent humidity"
+    "currentTime sunrise sunset";
+}
+
+.weatherDesc {
+  grid-area: weatherDesc;
+}
+
+.cityCountry {
+  grid-area: cityCountry;
+}
+
+.currentTime {
+  grid-area: currentTime;
+}
+
+.sunrise {
+  grid-area: sunrise;
+}
+
+.sunset {
+  grid-area: sunset;
+}
+
+.temperatureCurrent {
+  grid-area: temperatureCurrent;
+  font-size: 5rem;
+  font-weight: 900;
+}
+
+.temperatureFeeling {
+  grid-area: temperatureFeeling;
+}
+
+.wind {
+  grid-area: wind;
+}
+
+.humidity {
+  grid-area: humidity;
+}
+
+.pollutionContainer {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  align-self: flex-end;
+  justify-self: flex-end;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 2rem);
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "COlevel SO2level PM10level NO2level PM25level O3level"
+    "generalPollutionLevel generalPollutionLevel generalPollutionLevel generalPollutionLevel generalPollutionLevel generalPollutionLevel";
+}
+
+.COlevel {
+  grid-area: COlevel;
+}
+
+.SO2level {
+  grid-area: SO2level;
+}
+
+.PM10level {
+  grid-area: PM10level;
+}
+
+.NO2level {
+  grid-area: NO2level;
+}
+
+.PM25level {
+  grid-area: PM25level;
+}
+
+.O3level {
+  grid-area: O3level;
+}
+
+.generalPollutionLevel {
+  grid-area: generalPollutionLevel;
+}
