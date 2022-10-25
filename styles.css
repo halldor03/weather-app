@@ -16,13 +16,6 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 600px) {
-  * {
-    color: rgb(255, 255, 255);
-    font-size: 12px;
-  }
-}
-
 body {
   height: 100vh;
   background: rgba(255, 255, 255, 0.3);
@@ -41,13 +34,6 @@ body {
   padding: 5rem;
 }
 
-@media (max-width: 600px) {
-  #content {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 .inputContainer {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
@@ -64,17 +50,36 @@ input {
   color: white;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
+  * {
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+  }
+
+  #content {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+  }
+
+  .inputContainer {
+    padding-bottom: 0.5rem;
+  }
+
   input {
     text-align: left;
-    padding-bottom: 0.5rem;
+  }
+
+  .inputContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 .noCityFound {
   color: rgba(255, 0, 0, 0.5);
   text-align: right;
-  padding-top: 0.5rem;
 }
 
 .weatherContainer {

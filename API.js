@@ -68,7 +68,7 @@ const fetchProcessAPI = (() => {
   };
 
   const getPollution = async (lat, lon) => {
-    const url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=d83edcff39bcbf91f81d87eaf5275391`;
+    const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=d83edcff39bcbf91f81d87eaf5275391`;
     const fetchAPI = await fetch(url, { mode: "cors" });
     const dataAPI = await fetchAPI.json();
     processPollutionData(dataAPI);
