@@ -33,16 +33,18 @@ const fetchProcessAPI = (() => {
       }),
       sunrise: new Date(
         new Date(data.sys.sunrise * 1000) + data.timezone / 3600
-      ).toLocaleString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
-      }),
-      sunset: new Date(
-        new Date(data.sys.sunset * 1000) + data.timezone / 3600
-      ).toLocaleString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
-      }),
+      )
+        .toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+        })
+        .replace(/-/g, "/"),
+      sunset: new Date(new Date(data.sys.sunset * 1000) + data.timezone / 3600)
+        .toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+        })
+        .replace(/-/g, "/"),
       tempCurrent: data.main.temp,
       tempFeeling: data.main.feels_like,
       humidity: data.main.humidity,
