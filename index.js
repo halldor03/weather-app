@@ -50,18 +50,19 @@ const DOM = (() => {
     const temperatureCurrent = document.createElement("div");
     temperatureCurrent.classList.add("temperatureCurrent");
     temperatureCurrent.innerText =
-      parseInt(processedCityData.tempCurrent) + "\u2103";
+      parseInt(processedCityData.tempCurrent) + "\u00B0C";
     weatherContainer.appendChild(temperatureCurrent);
 
     const temperatureFeeling = document.createElement("div");
     temperatureFeeling.classList.add("temperatureFeeling");
     temperatureFeeling.innerText =
-      "feels like: " + parseInt(processedCityData.tempFeeling) + "\u2103";
+      "feels like: " + parseInt(processedCityData.tempFeeling) + "\u00B0C";
     weatherContainer.appendChild(temperatureFeeling);
 
     const wind = document.createElement("div");
     wind.classList.add("wind");
-    wind.innerText = "wind: " + processedCityData.windSpeed + " m/s";
+    wind.innerText =
+      "wind: " + parseInt(processedCityData.windSpeed) * 3.6 + " km/h";
     weatherContainer.appendChild(wind);
 
     const humidity = document.createElement("div");
@@ -78,6 +79,11 @@ const DOM = (() => {
     sunset.classList.add("sunset");
     sunset.innerText = "sunset: " + processedCityData.sunset;
     weatherContainer.appendChild(sunset);
+
+    const weatherIcon = document.createElement("img");
+    weatherIcon.classList.add("weatherIcon");
+    weatherIcon.src = `http://openweathermap.org/img/wn/${processedCityData.icon}@2x.png`;
+    weatherContainer.appendChild(weatherIcon);
   };
 
   const pollution = (processedPollutionData) => {
@@ -87,48 +93,43 @@ const DOM = (() => {
     pollutionContainer.classList.add("pollutionContainer");
     content.appendChild(pollutionContainer);
 
-    const COlevel = document.createElement("div");
-    COlevel.classList.add("COlevel");
-    COlevel.innerText = "CO level: " + processedPollutionData.CO;
-    pollutionContainer.appendChild(COlevel);
-
-    const SO2level = document.createElement("div");
-    SO2level.classList.add("SO2level");
-    SO2level.innerText = "SO2 level: " + processedPollutionData.SO2;
-    pollutionContainer.appendChild(SO2level);
+    const PM25level = document.createElement("div");
+    PM25level.classList.add("PM25level");
+    PM25level.innerHTML =
+      "PM2.5 level: " + processedPollutionData.PM25 + " \xB5g/m\xB3";
+    pollutionContainer.appendChild(PM25level);
 
     const PM10level = document.createElement("div");
     PM10level.classList.add("PM10level");
-    PM10level.innerText = "PM10 level: " + processedPollutionData.PM10;
+    PM10level.innerText =
+      "PM10 level: " + processedPollutionData.PM10 + " \xB5g/m\xB3";
     pollutionContainer.appendChild(PM10level);
 
-    const NO2level = document.createElement("div");
-    NO2level.classList.add("NO2level");
-    NO2level.innerText = "NO2 level: " + processedPollutionData.NO2;
-    pollutionContainer.appendChild(NO2level);
-
-    const PM25level = document.createElement("div");
-    PM25level.classList.add("PM25level");
-    PM25level.innerText = "PM2,5 level: " + processedPollutionData.PM25;
-    pollutionContainer.appendChild(PM25level);
-
-    const O3level = document.createElement("div");
-    O3level.classList.add("O3level");
-    O3level.innerText = "O3 level: " + processedPollutionData.O3;
-    pollutionContainer.appendChild(O3level);
+    const COlevel = document.createElement("div");
+    COlevel.classList.add("COlevel");
+    COlevel.innerText =
+      "CO level: " + processedPollutionData.CO + " \xB5g/m\xB3";
+    pollutionContainer.appendChild(COlevel);
 
     const generalPollutionLevel = document.createElement("div");
     generalPollutionLevel.classList.add("generalPollutionLevel");
     if (processedPollutionData.general === 1) {
-      generalPollutionLevel.innerText = "General pollution level: good";
+      generalPollutionLevel.innerText = "General pollution level: good (1/5)";
+      generalPollutionLevel.classList.add("pollutionGood");
     } else if (processedPollutionData.general === 2) {
-      generalPollutionLevel.innerText = "General pollution level: fair";
+      generalPollutionLevel.innerText = "General pollution level: fair (2/5)";
+      generalPollutionLevel.classList.add("pollutionFair");
     } else if (processedPollutionData.general === 3) {
-      generalPollutionLevel.innerText = "General pollution level: moderate";
+      generalPollutionLevel.innerText =
+        "General pollution level: moderate (3/5)";
+      generalPollutionLevel.classList.add("pollutionModerate");
     } else if (processedPollutionData.general === 4) {
-      generalPollutionLevel.innerText = "General pollution level: poor";
+      generalPollutionLevel.innerText = "General pollution level: poor (4/5)";
+      generalPollutionLevel.classList.add("pollutionPoor");
     } else if (processedPollutionData.general === 5) {
-      generalPollutionLevel.innerText = "General pollution level: very poor";
+      generalPollutionLevel.innerText =
+        "General pollution level: very poor (5/5)";
+      generalPollutionLevel.classList.add("pollutionVeryPoor");
     }
 
     pollutionContainer.appendChild(generalPollutionLevel);
@@ -142,7 +143,7 @@ const DOM = (() => {
     }
     const noCityDiv = document.createElement("div");
     noCityDiv.classList.add("noCityFound");
-    noCityDiv.innerText = "No such city!";
+    noCityDiv.innerText = "City not found";
     inputContainer.appendChild(noCityDiv);
   };
 

@@ -48,6 +48,7 @@ const fetchProcessAPI = (() => {
       humidity: data.main.humidity,
       weather: data.weather[0].description,
       windSpeed: data.wind.speed,
+      icon: data.weather[0].icon,
     };
     // console.table(processedCityData);
     addCityDataToDOM(processedCityData);
@@ -76,11 +77,8 @@ const fetchProcessAPI = (() => {
   const processPollutionData = (data) => {
     const processedPollutionData = {
       CO: data.list[0].components.co,
-      SO2: data.list[0].components.so2,
       PM10: data.list[0].components.pm10,
-      NO2: data.list[0].components.no2,
       PM25: data.list[0].components.pm2_5,
-      O3: data.list[0].components.o3,
       general: data.list[0].main.aqi,
     };
     // console.table(processedPollutionData);

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 /* to show boxes */
 /* * {
@@ -10,17 +10,21 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family: montserrat, sans-serif;
   font-size: 16px;
   text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 600px) {
+  * {
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+  }
 }
 
 body {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background: rgba(255, 255, 255, 0.3);
   background-image: url(././img/background.jpg);
   background-repeat: no-repeat;
@@ -31,12 +35,17 @@ body {
 }
 
 #content {
-  width: 100vw;
-  height: 100vh;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   padding: 5rem;
+}
+
+@media (max-width: 600px) {
+  #content {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .inputContainer {
@@ -55,101 +64,184 @@ input {
   color: white;
 }
 
+@media (max-width: 600px) {
+  input {
+    text-align: left;
+    padding-bottom: 0.5rem;
+  }
+}
+
 .noCityFound {
-  height: 50px;
-  background-color: red;
+  color: rgba(255, 0, 0, 0.5);
+  text-align: right;
+  padding-top: 0.5rem;
 }
 
 .weatherContainer {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   display: grid;
-  grid-template-rows: repeat(auto-fit, 2rem);
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2rem 2rem 2rem 2rem 2rem 2rem;
+  grid-template-columns: repeat(3, max-content);
   grid-template-areas:
-    "weatherDesc weatherDesc weatherDesc"
-    "cityCountry cityCountry cityCountry"
-    "temperatureCurrent temperatureCurrent temperatureFeeling"
+    " weatherDesc weatherDesc weatherIcon"
+    " cityCountry cityCountry weatherIcon"
     "temperatureCurrent temperatureCurrent wind"
     "temperatureCurrent temperatureCurrent humidity"
-    "currentTime sunrise sunset";
+    "temperatureFeeling temperatureFeeling sunrise"
+    "currentTime currentTime sunset";
+  font-weight: 600;
 }
 
 .weatherDesc {
   grid-area: weatherDesc;
+  align-self: center;
+  font-size: 1.5rem;
 }
 
 .cityCountry {
   grid-area: cityCountry;
+  font-size: 1.25rem;
+  align-self: center;
+  min-width: fit-content;
 }
 
 .currentTime {
   grid-area: currentTime;
+  align-self: center;
 }
 
 .sunrise {
   grid-area: sunrise;
+  align-self: center;
+  border-left: 1px rgba(255, 255, 255, 0.5) solid;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .sunset {
   grid-area: sunset;
+  align-self: center;
+  border-left: 1px rgba(255, 255, 255, 0.5) solid;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .temperatureCurrent {
   grid-area: temperatureCurrent;
   font-size: 5rem;
   font-weight: 900;
+  align-self: center;
 }
 
 .temperatureFeeling {
   grid-area: temperatureFeeling;
+  align-self: center;
 }
 
 .wind {
   grid-area: wind;
+  align-self: center;
+  border-left: 1px rgba(255, 255, 255, 0.5) solid;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .humidity {
   grid-area: humidity;
+  align-self: center;
+  border-left: 1px rgba(255, 255, 255, 0.5) solid;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.weatherIcon {
+  grid-area: weatherIcon;
+  align-self: center;
 }
 
 .pollutionContainer {
   grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  align-self: flex-end;
-  justify-self: flex-end;
-  display: grid;
-  grid-template-rows: repeat(auto-fit, 2rem);
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    "COlevel SO2level PM10level NO2level PM25level O3level"
-    "generalPollutionLevel generalPollutionLevel generalPollutionLevel generalPollutionLevel generalPollutionLevel generalPollutionLevel";
+  grid-row: 1 / 2;
+  font-weight: 600;
+  padding-top: 4rem;
+  width: max-content;
 }
 
 .COlevel {
   grid-area: COlevel;
-}
-
-.SO2level {
-  grid-area: SO2level;
+  border-left: 1px rgba(255, 255, 255, 0.5) solid;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 1rem;
 }
 
 .PM10level {
   grid-area: PM10level;
-}
-
-.NO2level {
-  grid-area: NO2level;
+  border-left: 1px rgba(255, 255, 255, 0.5) solid;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 1rem;
 }
 
 .PM25level {
   grid-area: PM25level;
-}
-
-.O3level {
-  grid-area: O3level;
+  border-left: 1px rgba(255, 255, 255, 0.5) solid;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 1rem;
 }
 
 .generalPollutionLevel {
   grid-area: generalPollutionLevel;
+  border-left: 1px rgba(255, 255, 255, 0.5) solid;
+
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 1rem;
+}
+
+.pollutionGood {
+  color: rgba(0, 255, 0, 0.5);
+}
+
+.pollutionFair {
+  color: rgba(157, 255, 0, 0.5);
+}
+
+.pollutionModerate {
+  color: rgba(221, 255, 0, 0.5);
+}
+
+.pollutionPoor {
+  color: rgba(255, 196, 0, 0.5);
+}
+
+.pollutionVeryPoor {
+  color: rgba(255, 77, 0, 0.5);
 }
