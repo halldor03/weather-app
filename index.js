@@ -146,11 +146,6 @@ const DOM = (() => {
     noCityDiv.innerText = "City not found";
     inputContainer.appendChild(noCityDiv);
   };
-
-  // const reset = () => {
-  //   const weatherContainer = document.querySelector(".weatherContainer");
-  //   weatherContainer.remove();
-  // };
   return { contentDiv, searchInput, weather, noCityFound, pollution };
 })();
 DOM.contentDiv();
@@ -164,26 +159,9 @@ function searchCity() {
     if (e.key === "Enter") {
       e.preventDefault();
       const city = input.value;
-      // DOM.reset();
-      // DOM.contentDiv();
-      // DOM.searchInput();
       fetchProcessAPI.getCity(city);
       input.value = null;
-      // DOM.noCityFound();
-      // searchCity();
     }
   });
 }
 searchCity();
-
-// console.log(data);
-// Object.keys(data).forEach((key) => {
-//   console.log(key + ":", data[key]);
-// });
-
-// https://openweathermap.org/api/air-pollution
-// https://openweathermap.org/current#data
-// https://powietrze.gios.gov.pl/pjp/current
-
-// https://bscottnz.github.io/weather-app/
-// https://ding-09.github.io/weather-app/

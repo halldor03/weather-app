@@ -19,11 +19,11 @@ const fetchProcessAPI = (() => {
       lat: data.coord.lat,
       lon: data.coord.lon,
       country: data.sys.country,
-      timezone: data.timezone / 3600 - 1,
+      timezone: data.timezone / 3600,
       currentTime: new Date(
         new Date().getTime() +
           new Date().getTimezoneOffset() * 60000 +
-          (3600000 * (data.timezone / 3600) - 1)
+          3600000 * (data.timezone / 3600)
       ).toLocaleString("en-US", {
         hour: "numeric",
         minute: "numeric",
@@ -32,19 +32,17 @@ const fetchProcessAPI = (() => {
         day: "numeric",
       }),
       sunrise: new Date(
-        new Date(data.sys.sunrise * 1000) + data.timezone / 3600
-      )
-        .toLocaleString("en-US", {
-          hour: "numeric",
-          minute: "numeric",
-        })
-        .replace(/-/g, "/"),
-      sunset: new Date(new Date(data.sys.sunset * 1000) + data.timezone / 3600)
-        .toLocaleString("en-US", {
-          hour: "numeric",
-          minute: "numeric",
-        })
-        .replace(/-/g, "/"),
+        (data.timezone - 3600 + data.sys.sunrise) * 1000
+      ).toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+      }),
+      sunset: new Date(
+        (data.timezone - 3600 + data.sys.sunset) * 1000
+      ).toLocaleString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+      }),
       tempCurrent: data.main.temp,
       tempFeeling: data.main.feels_like,
       humidity: data.main.humidity,
@@ -52,7 +50,6 @@ const fetchProcessAPI = (() => {
       windSpeed: data.wind.speed,
       icon: data.weather[0].icon,
     };
-    // console.table(processedCityData);
     addCityDataToDOM(processedCityData);
     getPollution(processedCityData.lat, processedCityData.lon);
   };
@@ -83,7 +80,6 @@ const fetchProcessAPI = (() => {
       PM25: data.list[0].components.pm2_5,
       general: data.list[0].main.aqi,
     };
-    // console.table(processedPollutionData);
     addPollutionDataToDOM(processedPollutionData);
   };
 
